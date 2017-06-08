@@ -25,3 +25,10 @@ Then update database scheme  :
 ./manage.py migrate
 ```
 
+## Usage
+
+Import models and use custom objects methods to populate the databse.
+Currently :
+```
+Player.objects.steam_create(id)
+```
