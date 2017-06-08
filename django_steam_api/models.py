@@ -1,5 +1,5 @@
 from django.db import models
-from steam_api import managers
+from django_steam_api import managers
 
 
 class Player(models.Model):
