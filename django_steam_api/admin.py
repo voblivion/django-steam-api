@@ -1,5 +1,5 @@
 from django.contrib import admin
-from steam_api.models import Player
+from django_steam_api.models import Player
 
 
 class PlayerAdmin(admin.ModelAdmin):
