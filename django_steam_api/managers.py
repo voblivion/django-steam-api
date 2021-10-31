@@ -18,15 +18,17 @@ class PlayerManager(SteamManager):
 
     def steam_create(self, steam_id):
         raw_data = self.steam_query(self.player_url, {'steamids': steam_id})
-        raw_data = raw_data['players'][0]
-        data = {
-            'id': raw_data['steamid'],
-            'username': raw_data['personaname'],
-            'profile': raw_data['profileurl'],
-            'avatar_small': raw_data['avatar'],
-            'avatar_medium': raw_data['avatarmedium'],
-            'avatar_large': raw_data['avatarfull'],
-            'state': raw_data['personastate'],
-            'is_public': raw_data['communityvisibilitystate'] == 3,
-        }
-        return self.create(**data)
+        # add a check for raw_data
+        if 'players' in raw_data and raw_data['players']:
+            raw_data = raw_data['players'][0]
+            data = {
+                'id': raw_data['steamid'],
+                'username': raw_data['personaname'],
+                'profile': raw_data['profileurl'],
+                'avatar_small': raw_data['avatar'],
+                'avatar_medium': raw_data['avatarmedium'],
+                'avatar_large': raw_data['avatarfull'],
+                'state': raw_data['personastate'],
+                'is_public': raw_data['communityvisibilitystate'] == 3,
+            }
+            return self.create(**data)
